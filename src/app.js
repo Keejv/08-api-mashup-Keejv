@@ -12,7 +12,7 @@ class Mashed {
   fetchFlickrPhotos() {
     let resourceUrl =
       'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key='
-    let flickrAPIkey = '2bfdce80f8de8d01a3c0b1e43843e961'
+    let flickrAPIkey = process.env.myKittyKey
 
     let flickrQueryParams =
       '&text=space' +
@@ -45,3 +45,9 @@ class Mashed {
 (function() {
   new Mashed(document.querySelector('#mashed'))
 })();
+
+/* vad ska du ha för inputs? lyssna på enter eller key up, 
+det ordet kopplar du ihop och skickar in i query param.
+skicka en förfråga att du vill ha relevanta bilder på sök förfrågan och de bilderna vill du sedan visa i DOMen
+
+*/
