@@ -28,10 +28,17 @@ class Mashed {
     document.querySelector('.list-group').innerHTML = flickerPicture;   //här sparar vi resultat som vi sedan skickar ut i DOMen
   }
 
-  // worldlabwordsRespons(){
-  //   let wordLabRespons = '';
-  //   res.wordLab
-  // })
+  worldlabwordsRespons(res){
+    let words = Object.keys(res).map(key => {                           // skapar en array? eller? skriv i detalj vad skiten gör
+      return Object.values(res[key]).map(word => {
+        return word;
+      });
+    });
+    
+    words = flatten(words);
+    console.log(words)
+  }
+    
 
   fetchFlickrPhotos(searchRequest) {                                  // Denna fetch kollar på variabeln searchRequest
     let resourceUrl =
@@ -62,9 +69,15 @@ class Mashed {
       .then(res => {
         console.log('Got response from BigHugeLabs!')
         console.log(res)
+        this.worldlabwordsRespons(res)                              // vf e detta?
       })
       .catch(err => console.error(err))
   }
+}
+
+function flatten(words) {                                             // high-tech funktion från Axel, men om jag förstår det rätt 
+  const flat = [].concat(...words);                                   // så kollar den efter värden i array från api och även om det finns listor i listan och sparar värdet i en array som jag sedan kan kalla på i words
+  return flat.some(Array.isArray) ? flatten(flat) : flat;             
 }
 
 (function() {
