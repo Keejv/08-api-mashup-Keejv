@@ -10,7 +10,7 @@ class Mashed {
      var searchRequest = document.getElementById('searchInput').value;  //spara input i searchRequest
      
      this.fetchFlickrPhotos(searchRequest);
-     this.fetchWordlabWords('detest');
+     this.fetchWordlabWords(searchRequest);
 
      console.log(searchRequest);
     })
@@ -27,6 +27,11 @@ class Mashed {
     })
     document.querySelector('.list-group').innerHTML = flickerPicture;   //här sparar vi resultat som vi sedan skickar ut i DOMen
   }
+
+  // worldlabwordsRespons(){
+  //   let wordLabRespons = '';
+  //   res.wordLab
+  // })
 
   fetchFlickrPhotos(searchRequest) {                                  // Denna fetch kollar på variabeln searchRequest
     let resourceUrl =
@@ -49,7 +54,7 @@ class Mashed {
   }
 
   fetchWordlabWords(query) {
-    let wordLabAPIkey = '9d30c37acd6d49022f294eeff979f914'
+    let wordLabAPIkey = process.env.WORDLABBAPI
     let wordLabUrl = `http://words.bighugelabs.com/api/2/${wordLabAPIkey}/${query}/json`
 
     fetch(wordLabUrl)
