@@ -18,6 +18,20 @@ class Mashed {
       //  console.log(searchRequest);
     })
 
+    var keyEnter = document.getElementById('searchInput')                    
+    keyEnter.addEventListener('keyup', (e) => {                               
+      e.preventDefault();
+      if(e.keyCode === 13) {
+        
+        var searchRequest = document.getElementById('searchInput').value;         
+  
+        this.fetchFlickrPhotos(searchRequest);
+        this.fetchWordlabWords(searchRequest);
+  
+        //  console.log(searchRequest);
+      }
+    })
+
   }
 
   flickerResponse(res) {                                                      // Funktionen flickerResponse(parameter=res) mappar och renderar ut bilden
